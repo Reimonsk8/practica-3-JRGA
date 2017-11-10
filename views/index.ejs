@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es" ng-app="biblioApp">
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body ng-controller="LibroCtrl">
+    
+    <h1 class="jumbotron text-center"><%= title %></h1>
+    <p class="bg-info">Bienvenido a <%= title %> <%= saludo %> </p>
+    <input type="text" ng-model="libro.titulo" placeholder="insertar titulo" class="form-control">
+    <input type="text" ng-model="libro.autor" placeholder="insertar autor" class="form-control">
+    <input type="text" ng-model="libro.anio" placeholder="insertar año" class="form-control">
+    <input type="text" ng-model="libro.genero" placeholder="insertar genero" class="form-control">
+    <button ng-click="addLibro()" class="btn btn-primary" >Nuevo Libro </button>
+    <button ng-click="getLibros()" class="btn btn-primary" >Cargar Libreria</button>
+    <button ng-click="updateLibro(libro)" class="btn btn-primary" >Actualizar Libro</button>
+    <br>
+
+    {{titulo}}
+
+    <div ng-repeat="libro in libros" ng-click="showInfo(libro)">
+      <br>
+      <p class="list-group-item-info">Id : <strong>{{libro._id}}</strong>
+      <button ng-click="showLibro(libro)" class="btn btn-primary btn-xs">Seleccionar</button>
+      <button ng-click="deleteLibro(libro._id)" class="btn btn-primary btn-xs">Borrar</button>
+      </p>
+
+      <p class="list-group-item">Titulo : <strong>{{libro.titulo}}</strong></p>
+      <p class="list-group-item">Autor : <strong>{{libro.autor}}</strong></p>
+      <p class="list-group-item">Año : <strong>{{libro.anio}}</strong></p>
+      <p class="list-group-item">Genero : <strong>{{libro.genero}}</strong></p>
+    </div>
+    
+    <script type="text/javascript" src="/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/lib/angular/angular.js"></script>
+    <script type="text/javascript" src="/js/controllers/biblioCtrl.js"></script>
+    <script type="text/javascript" src="/lib/angular-route/angular-route.js"></script>
+    <script type="text/javascript" src="/js/services/biblioServ.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+  </body>
+</html>
+
